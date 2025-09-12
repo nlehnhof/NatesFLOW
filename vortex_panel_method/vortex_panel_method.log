@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.28)  11 SEP 2025 21:01
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.28)  12 SEP 2025 09:51
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1209,7 +1209,7 @@ LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
 (Font)              scaled to size 12.0pt on input line 22.
 LaTeX Font Info:    Font shape `T1/ntxtlf/b/n' will be
 (Font)              scaled to size 12.0pt on input line 22.
-<wind_tunnel.jpg, id=52, 249.18094pt x 165.61874pt>
+<wind_tunnel.jpg, id=48, 249.18094pt x 165.61874pt>
 File: wind_tunnel.jpg Graphic file (type jpg)
 <use wind_tunnel.jpg>
 Package pdftex.def Info: wind_tunnel.jpg  used on input line 33.
@@ -1220,7 +1220,7 @@ Package pdftex.def Info: wind_tunnel.jpg  used on input line 33.
 
 {C:/Users/nlehn/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ec-tlf.enc}{C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/tex-gyre/q-ts1.enc} <./wind_tunnel.jpg>]
 LaTeX Font Info:    Font shape `T1/ntxtlf/m/n' will be
-(Font)              scaled to size 5.5pt on input line 88.
+(Font)              scaled to size 5.5pt on input line 67.
 
 
 [2{C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/newtx/ntx-ot1-tlf.enc}] (vortex_panel_method.bbl
@@ -1292,20 +1292,20 @@ LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2020/03/25>
  ***********
 Package rerunfilecheck Info: File `vortex_panel_method.out' has not changed.
-(rerunfilecheck)             Checksum: B1A4C14B0293288F6D09A85EC051561A;593.
+(rerunfilecheck)             Checksum: D08DA6F470C943F709994D6C21A3E558;443.
  ) 
 Here is how much of TeX's memory you used:
- 45506 strings out of 473523
- 1040019 string characters out of 5714630
- 1562969 words of memory out of 5000000
- 67832 multiletter control sequences out of 15000+600000
- 676237 words of font info for 248 fonts, out of 8000000 for 9000
+ 45508 strings out of 473523
+ 1039982 string characters out of 5714630
+ 1563969 words of memory out of 5000000
+ 67830 multiletter control sequences out of 15000+600000
+ 678087 words of font info for 251 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 95i,10n,131p,1056b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on vortex_panel_method.pdf (3 pages, 200265 bytes).
+ 95i,13n,131p,1056b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI5.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
+Output written on vortex_panel_method.pdf (3 pages, 207384 bytes).
 PDF statistics:
- 162 PDF objects out of 1000 (max. 8388607)
- 26 named destinations out of 1000 (max. 500000)
- 40602 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 166 PDF objects out of 1000 (max. 8388607)
+ 28 named destinations out of 1000 (max. 500000)
+ 40594 words of extra memory for PDF output out of 42996 (max. 10000000)
 

@@ -51,42 +51,22 @@ Here we will derive the panel solve equation for source panels.
 % ======================================================
 \section{Methods}
 The panel method for source panels discretizes the surface of the body into panels, distributing a source to each panel to satisfy the boundary conditions.
-For the analysis, we assume that the entire panel has a constant strength source.
-Since we assume inviscid, incompressible, and irrotational flow, the panel method returns the potential flow equation.
+For the analysis, we assume that each panel has a constant strength source.
+Assuming an inviscid, incompressible, irrotational flow, the following are the governing equations.
 
-% --- Assumptions and Laplace's equation ---
-Assume an inviscid, incompressible, irrotational flow (steady for simplicity).
+\begin{align}
+\nabla \cdot \mathbf{u} &= 0, 
+&& \text{Incompressible flow}, \\
+\nabla \times \mathbf{u} = 0, \; &\Rightarrow \; \mathbf{u} = \nabla \phi,
+&& \text{Irrotational flow}, \text{ for some scalar potential $\phi(\mathbf{x})$}, \\
+\nabla \cdot (\nabla \phi) &= \nabla^2 \phi = 0, 
+&& \text{Substitute into continuity,} \\
+\nabla^2 \phi(\mathbf{x}) &= 0, 
+&& \text{Laplace's equation}.
+\label{eq:basics}
+\end{align}
 
-\paragraph{Incompressible (continuity):}
-\begin{equation}
-\nabla \cdot \mathbf{u} = 0.
-\label{eq:continuity}
-\end{equation}
-
-\paragraph{Irrotational:}
-\begin{equation}
-\nabla \times \mathbf{u} = 0 
-\quad \Rightarrow \quad 
-\mathbf{u} = \nabla \phi,
-\label{eq:irrotational}
-\end{equation}
-for some scalar potential $\phi(\mathbf{x})$.
-
-\paragraph{Substitute into continuity:}
-\begin{equation}
-\nabla \cdot (\nabla \phi) = \nabla^2 \phi = 0.
-\label{eq:laplace}
-\end{equation}
-
-So the potential satisfies Laplace’s equation
-\begin{equation}
-\nabla^2 \phi(\mathbf{x}) = 0, 
-\qquad
-\end{equation}
-
-For a body with no-penetration, the surface velocity is zero $(\mathbf{V}_s \;=\; 0)$:
-\[\nabla \cdot \mathbf{n} \;=\; 0 \text{on } S\]
-or, if the body is moving: 
+For a body with no-penetration, the surface velocity normal to the surface is zero. This is our boundary condition.
 \begin{equation}
 \nabla \phi \cdot \mathbf{n} 
 \;=\; \mathbf{V}_s \cdot \mathbf{n},
@@ -95,29 +75,71 @@ or, if the body is moving:
 \end{equation}
 
 In a 3D source panel method, each panel is assigned a constant source strength $\sigma_j$.
-The potential at a point $\mathbf{x}_i$ is obtained by integrating the fundamental solution over the panel surface $S_j$.
-Green's function is the fundamental solution for Laplace's equation.
+The potential at a point $\mathbf{P}$ is obtained by solving the PDE given by Laplace's equation. 
+We know Green's function solves this PDE.
 Since we gave each panel a constant strength, we can factor out $\sigma_j$ and find the potential at a point $\mathbf{P}$ of a unit strength source at $\mathbf{Q}$ (\autoref{eq:Greens}).
+\begin{align}
+G(\mathbf{P},\mathbf{Q}) &= \frac{1}{4\pi r}, 
+\quad \text{where } r = \lvert \mathbf{P} - \mathbf{Q} \rvert 
+\label{eq:Greens}
+\end{align}
+\noindent Let $\mathbf{Q}$ and $\mathbf{P}$ be points on the surface $S$.
+\vspace{1em}
+
+With Green's function defined, the potential at a field point $\mathbf{P}$ due to all panels can be written as
 \begin{equation}
-	G(\mathbf{P},\mathbf{Q}) = \frac{1}{4\pi r}, \text{where } r = \lvert \mathbf{P} - \mathbf{Q} \rvert 
-	\qquad 	\text{Let $\mathbf{Q}$ and $\mathbf{P}$ be points on the surface $S$.}
-	\label{eq:Greens}
+\phi(\mathbf{P}) = \sum_{j=1}^N \sigma_j \int_{S_j} G(\mathbf{P}, \mathbf{Q}) \, dS(\mathbf{Q}),
+\label{eq:potential_sum}
+\end{equation}
+where $\sigma_j$ is the constant source strength on panel $j$.
+\vspace{1em}
+
+The velocity is obtained by taking the gradient of the potential,
+\begin{equation}
+\mathbf{u}(\mathbf{P}) = \nabla_{\mathbf{P}} \phi(\mathbf{P})
+= \sum_{j=1}^N \sigma_j \nabla_{\mathbf{P}}
+\int_{S_j} G(\mathbf{P}, \mathbf{Q}) \, dS(\mathbf{Q}).
 \end{equation}
 
-\subsection{Boundary Condition}
-To satisfy the boundary condition, we need the velocity on the surface. 
-Since velocity is the gradient of potential (\autoref{eq:gradient}), to find the velocity at $\mathbf{P}$, we take the gradient of $G(\mathbf{P}, \mathbf{Q})$ w.r.t $\mathbf{P}$.
+Applying the no-penetration boundary condition at a control point $\mathbf{P}_i$ on panel $i$ requires
 \begin{equation}
-\mathbf{u} \;=\; \nabla \phi.
-\label{eq:gradient}
+\mathbf{u}(\mathbf{P}_i) \cdot \mathbf{n}_i + \mathbf{V}_\infty \cdot \mathbf{n}_i = 0,
+\label{eq:boundary}
+\end{equation}
+where $\mathbf{n}_i$ is the outward surface normal.
+\vspace{1em}
+
+We now define the influence coefficient $A_{ij}$ as the induced normal velocity at control point $i$ due to a unit-strength source on panel $j$:
+\begin{equation}
+A_{ij} = \mathbf{n}_i \cdot \nabla_{\mathbf{P}}
+\int_{S_j} G(\mathbf{P}_i, \mathbf{Q}) \, dS(\mathbf{Q}).
+\label{eq:Aij_def}
 \end{equation}
 
-With these equations, we set up a matrix of the influences of every source on every other source using \autoref{eq:Greens} giving us an N x N matrix where N is the number of panels.
+Evaluating the gradient of the Green’s function gives
+\begin{equation}
+\nabla_{\mathbf{P}} G(\mathbf{P}, \mathbf{Q})
+= - \frac{\mathbf{P} - \mathbf{Q}}{4\pi |\mathbf{P} - \mathbf{Q}|^3}.
+\end{equation}
+
+Thus, the influence coefficient for $i\,\neq\,j$ becomes
+\begin{equation}
+A_{ij} = -\frac{1}{4\pi} \int_{S_j}
+\frac{(\mathbf{P}_i - \mathbf{Q}) \cdot \mathbf{n}_i}
+{|\mathbf{P}_i - \mathbf{Q}|^3} \, dS(\mathbf{Q}).
+\label{eq:Aij_final}
+\end{equation}
+
+For $i\,=\,j$, control points lie on the same panel that is acting as the source. 
+The limiting value is finite and well-known:
+\[\mathbf{A}_{ii} \;=\; -\frac{1}{2}\]
+
+With these equations, we set up a matrix of the influences of every source on every other source using \autoref{eq:Aij_final} giving us an N x N matrix where N is the number of panels.
 We factored out the source strength $\sigma_j$ of each panel, giving us a vector of length N. 
-And finally, we have our no-flow-through boundary condition, giving us a vector of length N, so we can set up a linear systems of equation. 
+And finally, we have our no-flow-through boundary condition from \autoref{eq:bc}, giving us a vector of length N, so we can set up a linear systems of equation. 
 
 \begin{equation}
-	\sum_{j=1}^{N} A_{ij} \sigma_j \;=\; \mathbf{V}_\infty \cdot \mathbf{n}_i
+	\sum_{j=1}^{N} A_{ij} \sigma_j \;=\; -\mathbf{V}_\infty \cdot \mathbf{n}_i
 	\label{eq:systems}
 \end{equation}
 
@@ -141,9 +163,8 @@ A_{N1} & \cdots & A_{NN} \\
 Once we solve the linear systems of equations for $\sigma$, we compute the velocity and coefficient of pressure:
 \begin{align}
 \mathbf{V}(\mathbf{P}) &= \mathbf{V}_\infty + \sum_{j=1}^{N} \sigma_j \nabla \phi_j (\mathbf{P}) \\
-&\text{Compute the velocity vectors} \nonumber \\
 C_p(\mathbf{P}) &= 1 - \frac{\lvert \mathbf{V}(\mathbf{P}) \rvert^2}{\lvert \mathbf{V}_\infty \rvert^2} \\
-&\text{Compute the pressure coefficient} \nonumber
+\label{eq:vel_cp}
 \end{align}
 
 % ======================================================
@@ -151,6 +172,15 @@ C_p(\mathbf{P}) &= 1 - \frac{\lvert \mathbf{V}(\mathbf{P}) \rvert^2}{\lvert \mat
 The panel method is a powerful tool for modeling fluid flow around a body using surface singularities. 
 By solving the resulting system, we can find the fluid velocity and pressure distribution without running a full simulation. 
 Understanding the derivation and implementation of the source-based panel method provides a strong foundation for future CFD projects in aviation, propulsion, HVAC, and other fields.
+
+% To satisfy the boundary condition, we need the velocity on the surface of the body. 
+% Since velocity is the gradient of potential (\autoref{eq:gradient}), to find the velocity at $\mathbf{P}$, we take the gradient of $G(\mathbf{P}, \mathbf{Q})$ w.r.t $\mathbf{P}$.
+% \begin{equation}
+% \mathbf{u} \;=\; \nabla \phi.
+% \label{eq:gradient}
+% \end{equation}
+
+
 \section{References and Resources}
 
 \nocite{*}
