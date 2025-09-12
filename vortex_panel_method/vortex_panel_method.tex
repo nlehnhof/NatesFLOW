@@ -1,0 +1,160 @@
+\documentclass[conf]{new-aiaa} % Use [journal] for AIAA journal style
+
+\input{preamble} % your preamble.tex file with packages
+
+\begin{document}
+\sloppy % helps reduce overfull hboxes
+
+\title{A Report on the Panel Method with Sources}
+\author{Nathan R. Lehnhof\footnote{Research Assistant, Mechanical Engineering Dept.}}
+\affil{BYU Provo, UT}
+\date{\today}
+\maketitle
+
+% ======================================================
+\begin{abstract}
+Computational Fluid Dynamics (CFD) enables the analysis and optimization of fluid flows in industries such as aviation, HVAC, and propulsion. 
+The panel method, a foundational CFD technique, represents a body in a fluid using distributed singularities on its surface. 
+Solving the resulting system yields a scalar potential, from which fluid velocities around the body can be determined. 
+This report presents the theory and derivation of the source-based panel method, providing a framework for future CFD applications.
+\end{abstract}
+% ======================================================
+\section{Introduction}
+From the beginning of aviation, modeling and simulation techniques have been used to generate informed designs, and to clarify and correct old data and processes. 
+After disappointing flight tests in 1900 and 1901, the Wright brothers began to question the Lilienthal data that had previously guided their designs.
+Instead of continuing to rely on this aerodynamic data, they decided to build their own wind tunnel to measure the lift and drag of their models themselves (\autoref{fig:Wright}). 
+Through October 1901, the Wright brothers built and tested over one hundred models.
+This data was critical as they designed their new aircraft, contributing directly to their successful flight in 1903 \cite{nasa_windtunnel}.
+Wind tunnel testing, while still quite popular and effective, is quite expensive. 
+Subsonic, professional tests consistently number in the tens of thousands of dollars, with high-end, supersonic tests costing upwards of a million.
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=0.6\textwidth]{wind_tunnel.jpg}
+	\caption{The Wright Brothers 1901 wind tunnel}
+	\label{fig:Wright}
+\end{figure}
+
+As computing power increased, designers have leaned more and more towards Computational Fluid Dynamics as a cheaper, faster solution.
+The first CFD method was proposed in the 1940s by Lewis Fry Richardson. 
+Richardson, a meteorologist, proposed a numerical method for solving partial differential equations to describe fluid flows, but it wasn't until the 1970s and greater computing power that the first CFD software was introduced \cite{resolved_cfd_history}.
+With the advent of super computers, engineers can now run simulations previously thought impossible, allowing them to optimize designs.
+CFD has led to cheaper and quicker design as engineers can run many simulations at once, instead of having to wait for the results of costly wind tunnel tests.
+Even now, engineers are working to improve the existing CFD theories and techniques to further enhance and accelerate simulations.
+
+The classical hydrodynamic theory is one of the foundational theories of CFD \cite{sciencedirect_vortex}. 
+It states that fluid flow around a body can be modeled by a distribution of sources, sinks, vortices, and dipoles.
+Panel methods take advantage of this theory by defining the surface of the body with a distribution of source panels.
+These source panels counter the normal component of the free stream velocity, ensuring the no-flow-through condition.
+Here we will derive the panel solve equation for source panels.
+
+% ======================================================
+\section{Methods}
+The panel method for source panels discretizes the surface of the body into panels, distributing a source to each panel to satisfy the boundary conditions.
+For the analysis, we assume that the entire panel has a constant strength source.
+Since we assume inviscid, incompressible, and irrotational flow, the panel method returns the potential flow equation.
+
+% --- Assumptions and Laplace's equation ---
+Assume an inviscid, incompressible, irrotational flow (steady for simplicity).
+
+\paragraph{Incompressible (continuity):}
+\begin{equation}
+\nabla \cdot \mathbf{u} = 0.
+\label{eq:continuity}
+\end{equation}
+
+\paragraph{Irrotational:}
+\begin{equation}
+\nabla \times \mathbf{u} = 0 
+\quad \Rightarrow \quad 
+\mathbf{u} = \nabla \phi,
+\label{eq:irrotational}
+\end{equation}
+for some scalar potential $\phi(\mathbf{x})$.
+
+\paragraph{Substitute into continuity:}
+\begin{equation}
+\nabla \cdot (\nabla \phi) = \nabla^2 \phi = 0.
+\label{eq:laplace}
+\end{equation}
+
+So the potential satisfies Laplace’s equation
+\begin{equation}
+\nabla^2 \phi(\mathbf{x}) = 0, 
+\qquad
+\end{equation}
+
+For a body with no-penetration, the surface velocity is zero $(\mathbf{V}_s \;=\; 0)$:
+\[\nabla \cdot \mathbf{n} \;=\; 0 \text{on } S\]
+or, if the body is moving: 
+\begin{equation}
+\nabla \phi \cdot \mathbf{n} 
+\;=\; \mathbf{V}_s \cdot \mathbf{n},
+\qquad \text{where $\mathbf{n}$ is the surface normal and $\mathbf{V}_s$ is the surface velocity.}
+\label{eq:bc}
+\end{equation}
+
+In a 3D source panel method, each panel is assigned a constant source strength $\sigma_j$.
+The potential at a point $\mathbf{x}_i$ is obtained by integrating the fundamental solution over the panel surface $S_j$.
+Green's function is the fundamental solution for Laplace's equation.
+Since we gave each panel a constant strength, we can factor out $\sigma_j$ and find the potential at a point $\mathbf{P}$ of a unit strength source at $\mathbf{Q}$ (\autoref{eq:Greens}).
+\begin{equation}
+	G(\mathbf{P},\mathbf{Q}) = \frac{1}{4\pi r}, \text{where } r = \lvert \mathbf{P} - \mathbf{Q} \rvert 
+	\qquad 	\text{Let $\mathbf{Q}$ and $\mathbf{P}$ be points on the surface $S$.}
+	\label{eq:Greens}
+\end{equation}
+
+\subsection{Boundary Condition}
+To satisfy the boundary condition, we need the velocity on the surface. 
+Since velocity is the gradient of potential (\autoref{eq:gradient}), to find the velocity at $\mathbf{P}$, we take the gradient of $G(\mathbf{P}, \mathbf{Q})$ w.r.t $\mathbf{P}$.
+\begin{equation}
+\mathbf{u} \;=\; \nabla \phi.
+\label{eq:gradient}
+\end{equation}
+
+With these equations, we set up a matrix of the influences of every source on every other source using \autoref{eq:Greens} giving us an N x N matrix where N is the number of panels.
+We factored out the source strength $\sigma_j$ of each panel, giving us a vector of length N. 
+And finally, we have our no-flow-through boundary condition, giving us a vector of length N, so we can set up a linear systems of equation. 
+
+\begin{equation}
+	\sum_{j=1}^{N} A_{ij} \sigma_j \;=\; \mathbf{V}_\infty \cdot \mathbf{n}_i
+	\label{eq:systems}
+\end{equation}
+
+\[
+\begin{bmatrix}
+A_{11} & \cdots & A_{1N} \\
+\vdots & \ddots & \vdots \\
+A_{N1} & \cdots & A_{NN} \\
+\end{bmatrix}
+\begin{bmatrix}
+\sigma_1 \\ \vdots \\ \sigma_N
+\end{bmatrix}
+=
+\begin{bmatrix}
+\mathbf{V}_\infty \cdot \mathbf{n}_1 \\
+\vdots \\
+\mathbf{V}_\infty \cdot \mathbf{n}_N \\
+\end{bmatrix}
+\]
+
+Once we solve the linear systems of equations for $\sigma$, we compute the velocity and coefficient of pressure:
+\begin{align}
+\mathbf{V}(\mathbf{P}) &= \mathbf{V}_\infty + \sum_{j=1}^{N} \sigma_j \nabla \phi_j (\mathbf{P}) \\
+&\text{Compute the velocity vectors} \nonumber \\
+C_p(\mathbf{P}) &= 1 - \frac{\lvert \mathbf{V}(\mathbf{P}) \rvert^2}{\lvert \mathbf{V}_\infty \rvert^2} \\
+&\text{Compute the pressure coefficient} \nonumber
+\end{align}
+
+% ======================================================
+\section{Conclusion}
+The panel method is a powerful tool for modeling fluid flow around a body using surface singularities. 
+By solving the resulting system, we can find the fluid velocity and pressure distribution without running a full simulation. 
+Understanding the derivation and implementation of the source-based panel method provides a strong foundation for future CFD projects in aviation, propulsion, HVAC, and other fields.
+\section{References and Resources}
+
+\nocite{*}
+\bibliographystyle{new-aiaa}
+\bibliography{references}
+
+\end{document}

@@ -1,0 +1,118 @@
+%\usepackage[utf8]{inputenc}
+
+%graphics packages
+\usepackage[]{graphicx}
+\graphicspath{{./figures/}}
+
+% ------------------ tikz ------------
+%%tikz
+\RequirePackage{pgf,tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{shapes.misc}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{bending}
+\usetikzlibrary{shadows}
+\usetikzlibrary{patterns}
+\usetikzlibrary{patterns.meta}
+\usetikzlibrary{intersections}
+\usepgfplotslibrary{patchplots}
+\usepgfplotslibrary{fillbetween}
+\usepgfplotslibrary{groupplots}
+\usepgfplotslibrary{polar}
+\usepgfplotslibrary{smithchart}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{dateplot}
+\usepgfplotslibrary{ternary}
+\pgfplotsset{%
+	layers/standard/.define layer set={%
+		background,axis background,axis grid,axis ticks,axis lines,axis tick labels,pre main,main,axis descriptions,axis foreground%
+	}{grid style= {/pgfplots/on layer=axis grid},%
+		tick style= {/pgfplots/on layer=axis ticks},%
+		axis line style= {/pgfplots/on layer=axis lines},%
+		label style= {/pgfplots/on layer=axis descriptions},%
+		legend style= {/pgfplots/on layer=axis descriptions},%
+		title style= {/pgfplots/on layer=axis descriptions},%
+		colorbar style= {/pgfplots/on layer=axis descriptions},%
+		ticklabel style= {/pgfplots/on layer=axis tick labels},%
+		axis background@ style={/pgfplots/on layer=axis background},%
+		3d box foreground style={/pgfplots/on layer=axis foreground},%
+	},
+}
+% new style at automates partial ellipse
+\tikzset{
+    partial ellipse/.style args={#1:#2:#3}{
+        insert path={+ (#1:#3) arc (#1:#2:#3)}
+    }
+}
+
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{wrapfig}
+\usepackage{url}
+
+%tables
+\usepackage{array}
+\newcommand{\PreserveBackslash}[1]{\let\temp=\\#1\let\\=\temp}
+\newcolumntype{C}[1]{>{\PreserveBackslash\centering}m{#1}}
+\newcolumntype{R}[1]{>{\PreserveBackslash\raggedleft}m{#1}}
+\newcolumntype{L}[1]{>{\PreserveBackslash\raggedright}m{#1}}
+
+%mathpackages
+\usepackage{amsmath}
+%\usepackage{siunitx}
+%\usepackage{mathrsfs}
+%\newcommand{\vect}{\overset{\rightharpoonup}}
+%decrease overset height
+% \makeatletter
+% \newcommand{\oset}[3][0.25ex]{%
+% 	\mathrel{\mathop{#3}\limits^{
+% 			\vbox to#1{\kern-0.5\ex@
+% 				\hbox{$\scriptstyle#2$}\vss}}}}
+% \makeatother
+
+%%Vector arrow over variable
+%\newcommand{\vect}[1]{%
+%	\oset{\rightharpoonup}{#1}}
+
+\RequirePackage{bm}
+\newcommand{\vect}[1]{\bm{#1}}
+
+\newcommand{\mat}[1]{%
+	\mathbf{#1}}
+\usepackage{nicefrac}
+\usepackage{cancel}
+
+%referencing packages
+\usepackage{hyperref}
+\usepackage[]{cleveref}
+
+% ---------- colors -------------
+\RequirePackage{xcolor}
+\definecolor{navy}{HTML}{002E5D}
+\definecolor{royal}{HTML}{005CAB}	% royal that matches BYU Engineering logo
+\definecolor{darkgray}{HTML}{141414}
+\definecolor{mediumgray}{HTML}{666666}	% medium gray definition from A. Ning
+\definecolor{black}{HTML}{111111}
+\definecolor{primary}{HTML}{005CAB}
+\definecolor{secondary}{HTML}{c05367}
+\definecolor{tertiary}{HTML}{8fa651}
+\definecolor{plotsgray}{HTML}{808080}
+
+
+% -------------- easy coloring of things ----------------
+\newcommand{\navy}[1]{{\color{navy}#1}}
+\newcommand{\primary}[1]{{\color{primary}#1}}
+\newcommand{\secondary}[1]{{\color{secondary}#1}}
+\newcommand{\tertiary}[1]{{\color{tertiary}#1}}
+\newcommand{\gray}[1]{{\color{gray}#1}}
+
+% Allow same footnotes
+\newcommand*\samethanks[1][\value{footnote}]{\footnotemark[#1]}
+
+% make \noindent where easier
+\newcommand{\where}{\noindent where }
