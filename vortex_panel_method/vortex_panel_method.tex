@@ -50,8 +50,8 @@ Here we will derive the panel solve equation for source panels.
 
 % ======================================================
 \section{Methods}
-The panel method for source panels discretizes the surface of the body into panels, distributing a source to each panel to satisfy the boundary conditions.
-For the analysis, we assume that each panel has a constant strength source.
+The panel method for source panels discretizes the surface of the body into source panels, which when solved satisfies the boundary condition.
+For the analysis, we assume that each panel is a constant strength source.
 Assuming an inviscid, incompressible, irrotational flow, the following are the governing equations.
 
 \begin{align}
@@ -66,7 +66,7 @@ Assuming an inviscid, incompressible, irrotational flow, the following are the g
 \label{eq:basics}
 \end{align}
 
-For a body with no-penetration, the surface velocity normal to the surface is zero. This is our boundary condition.
+For a body with no-penetration, the component of the surface velocity that is normal to the surface is zero. This is our boundary condition.
 \begin{equation}
 \nabla \phi \cdot \mathbf{n} 
 \;=\; \mathbf{V}_s \cdot \mathbf{n},
@@ -77,7 +77,7 @@ For a body with no-penetration, the surface velocity normal to the surface is ze
 In a 3D source panel method, each panel is assigned a constant source strength $\sigma_j$.
 The potential at a point $\mathbf{P}$ is obtained by solving the PDE given by Laplace's equation. 
 We know Green's function solves this PDE.
-Since we gave each panel a constant strength, we can factor out $\sigma_j$ and find the potential at a point $\mathbf{P}$ of a unit strength source at $\mathbf{Q}$ (\autoref{eq:Greens}).
+Since each panel is a constant strength, we can factor out $\sigma_j$ and find the potential at a point $\mathbf{P}$ of a unit strength source at $\mathbf{Q}$ (\autoref{eq:Greens}).
 \begin{align}
 G(\mathbf{P},\mathbf{Q}) &= \frac{1}{4\pi r}, 
 \quad \text{where } r = \lvert \mathbf{P} - \mathbf{Q} \rvert 
@@ -86,7 +86,7 @@ G(\mathbf{P},\mathbf{Q}) &= \frac{1}{4\pi r},
 \noindent Let $\mathbf{Q}$ and $\mathbf{P}$ be points on the surface $S$.
 \vspace{1em}
 
-With Green's function defined, the potential at a field point $\mathbf{P}$ due to all panels can be written as
+With Green's function, the potential at a field point $\mathbf{P}$ due to all panels can be written as
 \begin{equation}
 \phi(\mathbf{P}) = \sum_{j=1}^N \sigma_j \int_{S_j} G(\mathbf{P}, \mathbf{Q}) \, dS(\mathbf{Q}),
 \label{eq:potential_sum}
@@ -172,14 +172,6 @@ C_p(\mathbf{P}) &= 1 - \frac{\lvert \mathbf{V}(\mathbf{P}) \rvert^2}{\lvert \mat
 The panel method is a powerful tool for modeling fluid flow around a body using surface singularities. 
 By solving the resulting system, we can find the fluid velocity and pressure distribution without running a full simulation. 
 Understanding the derivation and implementation of the source-based panel method provides a strong foundation for future CFD projects in aviation, propulsion, HVAC, and other fields.
-
-% To satisfy the boundary condition, we need the velocity on the surface of the body. 
-% Since velocity is the gradient of potential (\autoref{eq:gradient}), to find the velocity at $\mathbf{P}$, we take the gradient of $G(\mathbf{P}, \mathbf{Q})$ w.r.t $\mathbf{P}$.
-% \begin{equation}
-% \mathbf{u} \;=\; \nabla \phi.
-% \label{eq:gradient}
-% \end{equation}
-
 
 \section{References and Resources}
 

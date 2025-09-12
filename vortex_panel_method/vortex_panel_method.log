@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.28)  12 SEP 2025 09:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.3) (preloaded format=pdflatex 2025.3.28)  12 SEP 2025 17:35
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1295,15 +1295,15 @@ Package rerunfilecheck Info: File `vortex_panel_method.out' has not changed.
 (rerunfilecheck)             Checksum: D08DA6F470C943F709994D6C21A3E558;443.
  ) 
 Here is how much of TeX's memory you used:
- 45508 strings out of 473523
- 1039982 string characters out of 5714630
- 1563969 words of memory out of 5000000
+ 45504 strings out of 473523
+ 1039900 string characters out of 5714630
+ 1562969 words of memory out of 5000000
  67830 multiletter control sequences out of 15000+600000
- 678087 words of font info for 251 fonts, out of 8000000 for 9000
+ 677903 words of font info for 249 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  95i,13n,131p,1056b,609s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI5.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/NewTXMI7.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/tex-gyre/qtmr.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/txfonts/t1xtt.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txexs.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txmiaX.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/txsys.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmb.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmr.pfb><C:/Users/nlehn/AppData/Local/Programs/MiKTeX/fonts/type1/public/newtx/ztmri.pfb>
-Output written on vortex_panel_method.pdf (3 pages, 207384 bytes).
+Output written on vortex_panel_method.pdf (3 pages, 207427 bytes).
 PDF statistics:
  166 PDF objects out of 1000 (max. 8388607)
  28 named destinations out of 1000 (max. 500000)
